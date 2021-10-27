@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <c-login></c-login>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-import login from"./components/longin.vue"
+//import login from"./components/login.vue"
 
 export default {
   name: 'App',
   components: {
-    "c-login":login
+    //"c-login":login
     
   }
 }

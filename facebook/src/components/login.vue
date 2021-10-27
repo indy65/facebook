@@ -19,12 +19,18 @@
             class="d-block text-center mx-auto"
             type="text"
             placeholder="username"
+            v-model="loginusername"
           />
           <input
             class="d-block text-center mx-auto"
             type="text"
             placeholder="password"
+            v-model="loginpassword"
           />
+          <button v-on:click="confirmUser()">login</button>
+          <div v-if="confirmUser">
+            <router-link :to="'/main'">mainpage</router-link>
+          </div>
         </div>
         <div class="register" :class="{ active: register }">
           <input
@@ -61,6 +67,9 @@ export default {
       newusername: "",
       newpassword: "",
 
+      loginusername: "",
+      loginpassword: "",
+
       totalusers: 0,
     };
   },
@@ -78,12 +87,44 @@ export default {
         username: this.newusername,
         password: this.newpassword,
       };
-      axios
-        .post("http://localhost:3000/users", this.newuser)
-        .then(console.log("user criado"))
-        .catch((error) => console.log(error));
+      if (
+        this.newuser.username.length > 4 &&
+        this.newuser.password.length > 5
+      ) {
+        axios
+          .post("http://localhost:3000/users", this.newuser)
+          .then(console.log("user criado"))
+          .catch((error) => console.log(error));
 
-      this.users.push(this.newuser);
+        this.users.push(this.newuser);
+      }else{alert("username on password invalida")}
+    },
+    confirmUser() {
+      let userlogin = {
+        username: this.loginusername,
+        password: this.loginpassword,
+      };
+
+      for (let user of this.users) {
+        if (
+          user.username === userlogin.username &&
+          user.password === userlogin.password
+        ) {
+          console.log("user found");
+          this.$router.push('/main');
+        }
+      }
+      
+      /*
+      this.users.foreach((user) => {
+        if (
+          user.username == userlogin.username &&
+          user.password == userlogin.password
+        ) {
+          console.log("acertou");
+        }
+      });
+      */
     },
   },
 };
