@@ -87,6 +87,7 @@ export default {
         username: this.newusername,
         password: this.newpassword,
       };
+      //verifies name and password lenght
       if (
         this.newuser.username.length > 4 &&
         this.newuser.password.length > 5
@@ -97,7 +98,9 @@ export default {
           .catch((error) => console.log(error));
 
         this.users.push(this.newuser);
-      }else{alert("username on password invalida")}
+      } else {
+        alert("username on password invalida");
+      }
     },
     confirmUser() {
       let userlogin = {
@@ -111,20 +114,9 @@ export default {
           user.password === userlogin.password
         ) {
           console.log("user found");
-          this.$router.push('/main');
+          this.$router.push("/main/" + user.id);
         }
       }
-      
-      /*
-      this.users.foreach((user) => {
-        if (
-          user.username == userlogin.username &&
-          user.password == userlogin.password
-        ) {
-          console.log("acertou");
-        }
-      });
-      */
     },
   },
 };

@@ -3,14 +3,24 @@
     {
       "id": 0,
       "username": "joao",
-      "password": "pedro"
+      "password": "pedro",
+      "post": [
+        {
+          "id": 0,
+          "text": "meu primeiro post"
+        }
+      ]
     },
     {
       "id": 1,
       "username": "joaopac65",
-      "password": "atec123"
+      "password": "atec123",
+      "post": [
+        {
+          "id": 0,
+          "text": "meu primeiro post"
+        }
+      ]
     }
-  
- 
   ]
 }
